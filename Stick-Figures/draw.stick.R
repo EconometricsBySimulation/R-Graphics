@@ -1,4 +1,4 @@
-# Stick Man/Woman Generating function
+# Stick Man/Woman Generating Function
 
 draw.stick <- function(x,y,scale=1,arms="down", 
                        gender="male",lwd=3, clcol="white",
@@ -7,6 +7,8 @@ draw.stick <- function(x,y,scale=1,arms="down",
   # clcol: color of clothes - any color
   # scale: fize of figure
   # x,y left bottom alignment of figure
+  # linecol: color of lines - any color
+  # lwd: line weight
   
   # Arms: "down", "nuetral", "up", "hip"
   # Gender: "male", "female"
