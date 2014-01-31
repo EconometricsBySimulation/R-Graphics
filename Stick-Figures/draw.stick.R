@@ -10,9 +10,9 @@ draw.stick <- function(x,y,scale=1,arms="down",
   # linecol: color of lines - any color
   # lwd: line weight
   
-  # Arms: "down", "nuetral", "up", "hip"
+  # Arms: "down", "nuetral", "up", "hip", "wave"
   # Gender: "male", "female"
-  # Face: "happy", "sad", "annoyed"
+  # Face: "happy", "sad", "annoyed", "surprised"
   # Hat: plot hat T,F
   
   
@@ -36,7 +36,6 @@ draw.stick <- function(x,y,scale=1,arms="down",
     draw.ellipse(x+50*s,y+72*s,6*s,8*s, segment = c(-160,-20),
                   lwd=lwd, border=linecol)
   }
-  8
   if (face=="sad")   {
     # Draw eyes
     draw.ellipse(x+46*s,y+75*s,2*s,2*s,lwd=lwd, border=linecol)
@@ -47,6 +46,21 @@ draw.stick <- function(x,y,scale=1,arms="down",
                  lwd=lwd, border=linecol)
   }
   
+  if (face=="surprised")   {
+    # Draw eyes
+    draw.ellipse(x+46*s,y+78*s,3*s,2*s,lwd=lwd, border=linecol)
+    draw.ellipse(x+54*s,y+78*s,3*s,2*s,lwd=lwd, border=linecol)
+    
+    # Draw irises
+  #  draw.ellipse(x+46*s,y+78*s,1*s,1*s,lwd=lwd, border=linecol)
+  #  draw.ellipse(x+54*s,y+78*s,1*s,1*s,lwd=lwd, border=linecol)
+    
+    # Draw mouth
+    draw.ellipse(x+50*s,y+65*s,3*s,4*s,
+                 lwd=lwd, border=linecol)
+  }
+  
+  
   if (face=="annoyed")  {
     # Draw mouth
     lines(c(x+46*s,x+55*s), c(y+66*s,y+68*s),lwd=lwd, col=linecol)
@@ -55,6 +69,8 @@ draw.stick <- function(x,y,scale=1,arms="down",
     draw.ellipse(x+46*s,y+76*s,2*s,2*s,lwd=lwd, border=linecol)
     draw.ellipse(x+54*s,y+76*s,2*s,1*s,lwd=lwd, border=linecol)
   }
+  
+  
   
   
   # Draw torso
@@ -76,6 +92,10 @@ draw.stick <- function(x,y,scale=1,arms="down",
   if (arms=="hip") {
     lines(c(x+50*s,x+37*s,x+48*s), c(y+56*s,y+47*s,y+40*s),lwd=lwd, col=linecol) # Left
     lines(c(x+50*s,x+63*s,x+51*s), c(y+56*s,y+49*s,y+62*s),lwd=lwd, col=linecol) # Right
+  }
+  if (arms=="wave") {
+    lines(c(x+50*s,x+38*s,x+33*s), c(y+56*s,y+60*s,y+78*s),lwd=lwd, col=linecol) # Left
+    lines(c(x+50*s,x+63*s,x+52*s), c(y+56*s,y+47*s,y+40*s),lwd=lwd, col=linecol) # Right
   }
   
   # Draw male legs
@@ -119,13 +139,13 @@ plot(c(.25,1.25), c(0,3), type="n", xaxt='n', yaxt='n', ann=FALSE)
   draw.stick(.5,1, gender="female", arms="down", clcol="purple", 
              lwd=2, linecol=gray(.5), face="sad",hat=T)
   
-  draw.stick(0,2, arms="down", linecol=gray(.7),
-             clcol="blue", face="annoyed",hat=F)
+  draw.stick(0,2, arms="wave", linecol=gray(.7),
+             clcol="blue", face="surprised",hat=F)
   
   draw.stick(.5,2, gender="female", arms="hip", clcol="light blue", 
              linecol=gray(.7),face="annoyed")
 
 # Solitary annoyed figure
 plot(c(.25,.75), c(0,1), type="n")
- draw.stick(0,0, face="annoyed", gender="male", 
-            arms="down", hat=F)
+ draw.stick(0,0, face="surprised", gender="male", 
+            arms="wave", hat=F)
