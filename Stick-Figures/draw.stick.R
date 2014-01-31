@@ -1,4 +1,4 @@
-# Stick Man
+# Stick Man/Woman Generating function
 
 draw.stick <- function(x,y,scale=1,arms="down", 
                        gender="male",lwd=3, clcol="white",
