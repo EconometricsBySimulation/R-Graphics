@@ -39,9 +39,9 @@ NULL
 #'    # Map of stick figures
 #'    par(mar = rep(0, 4))
 #'
-#'    plot(c(.25,1.25), c(0,3), type="n", xaxt='n', yaxt='n', ann=FALSE)
+#'    plot(c(.25,1.25), c(0,3), type = "n", xaxt = 'n', yaxt = 'n', ann = FALSE)
 #'
-#'    drawStick(0,0, arms="hip")
+#'    drawStick(0, 0, arms = "hip")
 #'    drawStick(.5,0, gender="female", arms="up")
 #'
 #'    drawStick(0,1, arms="neutral", lwd=2, linecol=gray(.5),
@@ -86,7 +86,7 @@ drawStick <- function(x = 0, y = 0, scale = 1, gender = c("male", "female"),
     
     # Draw arms
     
-    arm <- addArms(x = x, y = y, s = s, 
+    arm <- addArms(x = x, y = y, s = s, arms = arms, 
         lwd = lwd, linecol = linecol, shcol = shcol, torso = torso, ...)
     
     # Draw legs

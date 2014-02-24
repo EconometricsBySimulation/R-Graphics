@@ -5,6 +5,14 @@
 #' @param y: left bottom alignment of figure
 #' @param s: scale (default 1/100)
 #' @param face: "default" ("neutral"), "happy", "sad", "annoyed", "surprised"
+#'     face can also be a numeric matrix with 4 rows and four columns.
+#'     The rows give coordinates of: \enumerate{
+#'     \item left eye x, y, x diameter, y diameter
+#'     \item right eye x, y, x diameter, y diameter
+#'     \item mouth x, y, x diameter, y diameter. 
+#'         If the third value of the fourth column is Inf, x, y, x, y of a straight line.
+#'     \item mouth start and stop positions. If the third value is Inf, plot a line for the mouth (plus one unused values)
+#' }
 #' @param hat: single logical plot hat 
 #'     or single character "none" or "default" (default "none")
 #' @param lwd: line weight
@@ -52,8 +60,8 @@ addHead <- function(x = 0, y = 0, s = 1 / 100, face = "default", hat = "none",
             "annoyed" = {
                 matrix(c(46, 76, 2, 2,
                     54, 76, 2, 1, 
-                    50, 67, 3, 4, 
-                    0, 360, 0, 0), nrow = 4, ncol = 4, byrow = TRUE)
+                    46, 66, 55, 68, 
+                    0,   0, Inf, 0), nrow = 4, ncol = 4, byrow = TRUE)
             },  
             matrix(c(46, 76, 2, 1.8,
                     54, 76, 2, 1.8, 
@@ -67,9 +75,15 @@ addHead <- function(x = 0, y = 0, s = 1 / 100, face = "default", hat = "none",
     draw.ellipse(x = x + face[2, 1] * s, y = y + face[2, 2] * s, a = face[2, 3] * s, b = face[2, 4] * s, lwd = lwd, border = linecol)
     
     # Draw mouth
-    draw.ellipse(x = x + face[3, 1] * s, y = y + face[3, 2] * s, a = face[3, 3] * s, b = face[3, 4] * s, 
-        segment = face[4, 1:2], lwd = lwd, border = linecol)
-    
+    if (is.finite(face[4, 3])) {
+        
+        draw.ellipse(x = x + face[3, 1] * s, y = y + face[3, 2] * s, a = face[3, 3] * s, b = face[3, 4] * s, 
+            segment = face[4, 1:2], lwd = lwd, border = linecol)
+        
+    } else {
+        
+        lines(x = x + face[3, c(1, 3)] * s, y + face[3, c(2, 4)] * s, lwd = lwd, col = linecol)
+    }
     # Draw hat
     if (hat != "none") {
         
