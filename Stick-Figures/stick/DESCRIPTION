@@ -1,0 +1,9 @@
+Package: stick
+Type: Package
+Title: Craft Stick Men and Women
+Version: 1.0
+Date: 2014-02-05
+Author: Francis Smart, Mango Solutions
+Maintainer: Francis Smart <fsmart@gmail.com>
+Description: Make Stick People
+License: GPL-2
