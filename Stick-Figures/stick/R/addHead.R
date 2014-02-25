@@ -3,7 +3,8 @@
 #' @title add head
 #' @param x: left bottom alignment of figure
 #' @param y: left bottom alignment of figure
-#' @param s: scale (default 1/100)
+#' @param xs: x scale (default 1/100)
+#' @param ys: y scale (default 1/100)
 #' @param face: "default" ("neutral"), "happy", "sad", "annoyed", "surprised"
 #'     face can also be a numeric matrix with 4 rows and four columns.
 #'     The rows give coordinates of: \enumerate{
@@ -17,7 +18,7 @@
 #'     or single character "none" or "default" (default "none")
 #' @param lwd: line weight
 #' @param linecol: color of lines - any color
-#' @param hatcol: color of hat - any color
+#' @param hatcol: color of hat - any color, or NULL to supress hat (default 2)
 #' @param head: length 4 specifying head x-y location and x-y diameters
 #' @return matrix of head coordinates
 #' @export
@@ -29,10 +30,10 @@
 #'                        50, 70, 6, 2, 
 #'                        -160, -20, 0, 0), nrow = 4, ncol = 4, byrow = TRUE))
 
-addHead <- function(x = 0, y = 0, s = 1 / 100, face = "default", hat = "none",
+addHead <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, face = "default", hat = "none",
     lwd = 1, linecol = 1, hatcol = 2, head = c(50, 75, 10, 15)) {
     
-    draw.ellipse(x + head[1] * s, y + head[2] * s, head[3] * s, head[4] * s, lwd = lwd, border = linecol)
+    draw.ellipse(x + head[1] * xs, y + head[2] * ys, head[3] * xs, head[4] * ys, lwd = lwd, border = linecol)
     
     if (all(is.na(face))) { face <- "default" }
     
@@ -71,33 +72,36 @@ addHead <- function(x = 0, y = 0, s = 1 / 100, face = "default", hat = "none",
     }
     
     # Draw eyes
-    draw.ellipse(x = x + face[1, 1] * s, y = y + face[1, 2] * s, a = face[1, 3] * s, b = face[1, 4] * s, lwd = lwd, border = linecol)
-    draw.ellipse(x = x + face[2, 1] * s, y = y + face[2, 2] * s, a = face[2, 3] * s, b = face[2, 4] * s, lwd = lwd, border = linecol)
+    draw.ellipse(x = x + face[1, 1] * xs, y = y + face[1, 2] * ys, a = face[1, 3] * xs, b = face[1, 4] * ys, lwd = lwd, border = linecol)
+    draw.ellipse(x = x + face[2, 1] * xs, y = y + face[2, 2] * ys, a = face[2, 3] * xs, b = face[2, 4] * ys, lwd = lwd, border = linecol)
     
     # Draw mouth
     if (is.finite(face[4, 3])) {
         
-        draw.ellipse(x = x + face[3, 1] * s, y = y + face[3, 2] * s, a = face[3, 3] * s, b = face[3, 4] * s, 
+        draw.ellipse(x = x + face[3, 1] * xs, y = y + face[3, 2] * ys, a = face[3, 3] * xs, b = face[3, 4] * ys, 
             segment = face[4, 1:2], lwd = lwd, border = linecol)
         
     } else {
         
-        lines(x = x + face[3, c(1, 3)] * s, y + face[3, c(2, 4)] * s, lwd = lwd, col = linecol)
+        lines(x = x + face[3, c(1, 3)] * xs, y + face[3, c(2, 4)] * ys, lwd = lwd, col = linecol)
     }
     # Draw hat
-    if (hat != "none") {
-        
-        hat <- matrix(c(-14, -14, -9, -8, 
-                    rev(c(14, 14, 9, 8)),
-                        
-                        8, 10, 10, 16,
-                    rev(c(8, 10, 10, 16))), nrow = 2, byrow = TRUE)
-        
-        polygon(
-            x + (hat[1, ] + head[1]) * s,
-            y + (hat[2, ] + head[2]) * s,
-            col = hatcol, border = linecol, lwd = lwd)
-    }
     
+    if (!is.null(hatcol)) {
+        
+        if (hat != "none") {
+            
+            hat <- matrix(c(-14, -14, -9, -8, 
+                        rev(c(14, 14, 9, 8)),
+                            
+                            8, 10, 10, 16,
+                        rev(c(8, 10, 10, 16))), nrow = 2, byrow = TRUE)
+            
+            polygon(
+                x + (hat[1, ] + head[1]) * xs,
+                y + (hat[2, ] + head[2]) * ys,
+                col = hatcol, border = linecol, lwd = lwd)
+        }
+    }
     return(invisible(face))
 }

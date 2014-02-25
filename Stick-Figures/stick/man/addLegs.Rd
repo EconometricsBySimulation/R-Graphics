@@ -2,9 +2,9 @@
 \alias{addLegs}
 \title{add legs}
 \usage{
-addLegs(x = 0, y = 0, s = 1/100, legs = "default", gender = c("male",
-  "female"), lwd = 1, linecol = 1, clcol = NULL, tail = c(50, 35),
-  w = 5)
+addLegs(x = 0, y = 0, xs = 1/100, ys = 1/100, legs = "default",
+  gender = c("male", "female"), lwd = 1, linecol = 1, clcol = NULL,
+  tail = c(50, 35), w = 5)
 }
 \arguments{
   \item{scale:}{size of figure}
@@ -13,7 +13,9 @@ addLegs(x = 0, y = 0, s = 1/100, legs = "default", gender = c("male",
 
   \item{y:}{left bottom alignment of figure}
 
-  \item{s:}{scale (default 1/100)}
+  \item{xs:}{x scale (default 1/100)}
+
+  \item{ys:}{y scale (default 1/100)}
 
   \item{legs:}{single character (default \code{'default'})}
 

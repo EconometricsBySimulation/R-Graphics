@@ -3,7 +3,8 @@
 #' @title add arms
 #' @param x: left bottom alignment of figure
 #' @param y: left bottom alignment of figure
-#' @param s: scale (default 1/100)
+#' @param xs: x scale (default 1/100)
+#' @param ys: y scale (default 1/100)
 #' @param arms: single character "default" ("down"), "neutral", "up", "hip", "wave", 
 #'     or numeric matrix with two rows for left and right coordinates
 #' @param lwd: line weight
@@ -22,12 +23,12 @@
 #'    addArms(arms = "up", linecol = 3, shcol = 3)
 #'    addArms(arms = "neutral", shcol = 4)
 
-addArms <- function(x = 0, y = 0, s = 1 / 100, arms = "default", 
+addArms <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, arms = "default", 
     lwd = 1, linecol = 1, shcol = NULL, torso = c(50, 60, 50, 35), w = 5) {
     
     # Draw torso
     
-    lines(c(x + torso[1] * s, x + torso[3] * s), c(y + torso[4] * s, y + torso[2] * s), lwd = lwd, col = linecol)
+    lines(c(x + torso[1] * xs, x + torso[3] * xs), c(y + torso[4] * ys, y + torso[2] * ys), lwd = lwd, col = linecol)
     
     if (all(is.na(arms))) { arms <- "default" }
     
@@ -55,7 +56,7 @@ addArms <- function(x = 0, y = 0, s = 1 / 100, arms = "default",
         )
     }
     
-    lines(x = x + arms[1, ] * s, y = y + arms[2, ] * s, lwd = lwd, col = linecol)
+    lines(x = x + arms[1, ] * xs, y = y + arms[2, ] * ys, lwd = lwd, col = linecol)
     
     ccol <- ceiling(ncol(arms) / 2)
     
@@ -75,7 +76,7 @@ addArms <- function(x = 0, y = 0, s = 1 / 100, arms = "default",
             nrow = 2, byrow = TRUE)
         
         # Draw shirt
-        polygon(x = x + s * shirt[1, ], y = y + s * shirt[2, ],
+        polygon(x = x + xs * shirt[1, ], y = y + ys * shirt[2, ],
                 col = shcol, border = linecol, lwd = lwd)
     }
     

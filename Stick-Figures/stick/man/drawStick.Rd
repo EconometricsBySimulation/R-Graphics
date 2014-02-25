@@ -2,36 +2,37 @@
 \alias{drawStick}
 \title{Stick Man/Woman}
 \usage{
-drawStick(x = 0, y = 0, scale = 1, gender = c("male", "female"),
-  lwd = 3, linecol = 1, hatcol = 2, shcol = NULL, clcol = NULL,
-  arms = "default", face = "default", legs = "default", hat = "default",
-  shirt = FALSE, ...)
+drawStick(x = 0, y = 0, xscale = 1, yscale = xscale,
+  gender = c("male", "female"), lwd = 3, linecol = 1, hatcol = 2,
+  shcol = NULL, clcol = NULL, arms = "default", face = "default",
+  legs = "default", hat = "default", ...)
 }
 \arguments{
-  \item{scale:}{size of figure}
+  \item{scale}{size of figure}
 
-  \item{x:}{left bottom alignment of figure}
+  \item{x}{left bottom alignment of figure}
 
-  \item{y:}{left bottom alignment of figure}
+  \item{y}{left bottom alignment of figure}
 
-  \item{lwd:}{line weight}
+  \item{lwd}{line weight}
 
-  \item{linecol:}{color of lines}
+  \item{linecol}{color of lines}
 
-  \item{hatcol:}{color of hat}
-
-  \item{shcol:}{color of shirt, or NULL to supress shirt
+  \item{hatcol}{color of hat, or NULL to supress shirt
   (default \code{NULL})}
 
-  \item{clcol:}{color of clothes, or NULL to supress
-  clothes (default \code{NULL})}
+  \item{shcol}{color of shirt, or NULL to supress shirt
+  (default \code{NULL})}
 
-  \item{arms:}{single character "down", "neutral", "up",
+  \item{clcol}{color of clothes, or NULL to supress clothes
+  (default \code{NULL})}
+
+  \item{arms}{single character "down", "neutral", "up",
   "hip", "wave"}
 
-  \item{gender:}{"male", "female"}
+  \item{gender}{"male", "female"}
 
-  \item{face:}{single character "default" ("neutral"),
+  \item{face}{single character "default" ("neutral"),
   "happy", "sad", "annoyed", "surprised" face can also be a
   numeric matrix with 4 rows and four columns.  The rows
   give coordinates of: \enumerate{ \item left eye x, y, x
@@ -42,23 +43,29 @@ drawStick(x = 0, y = 0, scale = 1, gender = c("male", "female"),
   positions. If the third value is Inf, plot a line for the
   mouth (plus one unused values) }}
 
-  \item{legs:}{single character "default" or "apart"}
+  \item{legs}{single character "default" or "apart"}
 
-  \item{hat:}{single logical plot hat or automatic if NA
+  \item{hat}{single logical plot hat or automatic if NA
   (default NA)}
 }
 \value{
 list with locations of head, arms and legs
 }
 \description{
-Create a Stick Man or Woman See
-http://www.econometricsbysimulation.com/2014/01/stick-figure-function-r.html
-for more information Use \code{test_dir(path =
+Create a Stick Man or Woman.
+}
+\details{
+See
+\url{http://www.econometricsbysimulation.com/2014/01/stick-figure-function-r.html}
+for more information. Use \code{test_dir(path =
 file.path(system.file(package = "stick"), "tests"))} (from
 \code{testthat}) to run tests.
 }
 \examples{
-# Map of stick figures
+# Solitary annoyed figure
+   drawStick(face = "surprised", arms = "wave")
+
+   # Map of stick figures
    par(mar = rep(0, 4))
 
    plot(c(.25,1.25), c(0,3), type = "n", xaxt = 'n', yaxt = 'n', ann = FALSE)
@@ -77,11 +84,6 @@ file.path(system.file(package = "stick"), "tests"))} (from
 
    drawStick(0.5, 2, gender = "female", arms = "hip", clcol = "light blue",
             linecol = gray(.7),face = "annoyed")
-
-   # Solitary annoyed figure
-   plot(c(.25,.75), c(0,1), type = "n")
-   drawStick(0, 0, face = "surprised", gender = "male",
-       arms = "wave", hat = FALSE)
 }
 \author{
 Francis Smart, Mango Solutions

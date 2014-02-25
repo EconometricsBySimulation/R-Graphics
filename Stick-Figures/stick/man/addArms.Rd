@@ -2,15 +2,18 @@
 \alias{addArms}
 \title{add arms}
 \usage{
-addArms(x = 0, y = 0, s = 1/100, arms = "default", lwd = 1,
-  linecol = 1, shcol = NULL, torso = c(50, 60, 50, 35), w = 5)
+addArms(x = 0, y = 0, xs = 1/100, ys = 1/100, arms = "default",
+  lwd = 1, linecol = 1, shcol = NULL, torso = c(50, 60, 50, 35),
+  w = 5)
 }
 \arguments{
   \item{x:}{left bottom alignment of figure}
 
   \item{y:}{left bottom alignment of figure}
 
-  \item{s:}{scale (default 1/100)}
+  \item{xs:}{x scale (default 1/100)}
+
+  \item{ys:}{y scale (default 1/100)}
 
   \item{arms:}{single character "default" ("down"),
   "neutral", "up", "hip", "wave", or numeric matrix with

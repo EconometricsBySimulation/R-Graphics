@@ -2,15 +2,18 @@
 \alias{addHead}
 \title{add head}
 \usage{
-addHead(x = 0, y = 0, s = 1/100, face = "default", hat = "none",
-  lwd = 1, linecol = 1, hatcol = 2, head = c(50, 75, 10, 15))
+addHead(x = 0, y = 0, xs = 1/100, ys = 1/100, face = "default",
+  hat = "none", lwd = 1, linecol = 1, hatcol = 2, head = c(50, 75, 10,
+  15))
 }
 \arguments{
   \item{x:}{left bottom alignment of figure}
 
   \item{y:}{left bottom alignment of figure}
 
-  \item{s:}{scale (default 1/100)}
+  \item{xs:}{x scale (default 1/100)}
+
+  \item{ys:}{y scale (default 1/100)}
 
   \item{face:}{"default" ("neutral"), "happy", "sad",
   "annoyed", "surprised" face can also be a numeric matrix
@@ -30,7 +33,8 @@ addHead(x = 0, y = 0, s = 1/100, face = "default", hat = "none",
 
   \item{linecol:}{color of lines - any color}
 
-  \item{hatcol:}{color of hat - any color}
+  \item{hatcol:}{color of hat - any color, or NULL to
+  supress hat (default 2)}
 
   \item{head:}{length 4 specifying head x-y location and
   x-y diameters}
