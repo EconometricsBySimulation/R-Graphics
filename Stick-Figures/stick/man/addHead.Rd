@@ -13,7 +13,15 @@ addHead(x = 0, y = 0, s = 1/100, face = "default", hat = "none",
   \item{s:}{scale (default 1/100)}
 
   \item{face:}{"default" ("neutral"), "happy", "sad",
-  "annoyed", "surprised"}
+  "annoyed", "surprised" face can also be a numeric matrix
+  with 4 rows and four columns.  The rows give coordinates
+  of: \enumerate{ \item left eye x, y, x diameter, y
+  diameter \item right eye x, y, x diameter, y diameter
+  \item mouth x, y, x diameter, y diameter.  If the third
+  value of the fourth column is Inf, x, y, x, y of a
+  straight line.  \item mouth start and stop positions. If
+  the third value is Inf, plot a line for the mouth (plus
+  one unused values) }}
 
   \item{hat:}{single logical plot hat or single character
   "none" or "default" (default "none")}

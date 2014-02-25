@@ -10,6 +10,8 @@ context("adding arms")
 
 test_that("addArms", {
     
+    plot(0:1, 0:1, type = "n")
+    
     a1 <- addArms(arms = "neutral", linecol = 2)
     expect_that(a1, equals(matrix(c(25, 50, 75,
             55, 55, 55), nrow = 2, byrow = TRUE)))
@@ -33,6 +35,8 @@ test_that("addArms", {
     a6 <- addArms(arms = "neutral", shcol = 4)
     expect_that(a6, equals(matrix(c(25, 50, 75,
             55, 55, 55), nrow = 2, byrow = TRUE)))
+    
+    dev.off()
     }
 )
 

@@ -2,9 +2,9 @@
 \alias{addLegs}
 \title{add legs}
 \usage{
-addLegs(x = 0, y = 0, s = 1/100, gender = c("male", "female"),
-  lwd = 1, linecol = 1, clcol = NULL, legs = "default", tail = c(50,
-  35), w = 5)
+addLegs(x = 0, y = 0, s = 1/100, legs = "default", gender = c("male",
+  "female"), lwd = 1, linecol = 1, clcol = NULL, tail = c(50, 35),
+  w = 5)
 }
 \arguments{
   \item{scale:}{size of figure}
@@ -15,6 +15,8 @@ addLegs(x = 0, y = 0, s = 1/100, gender = c("male", "female"),
 
   \item{s:}{scale (default 1/100)}
 
+  \item{legs:}{single character (default \code{'default'})}
+
   \item{gender:}{"male", "female"}
 
   \item{lwd:}{line weight}
@@ -24,19 +26,20 @@ addLegs(x = 0, y = 0, s = 1/100, gender = c("male", "female"),
   \item{clcol:}{color of clothes, or NULL to supress
   clothes (default \code{NULL})}
 
-  \item{legs:}{single character (default \code{'default'})}
-
   \item{tail:}{x-y coordiates of leg join with torso
   (default \code{c(50, 35)})}
 
   \item{w:}{width parameter (default 5)}
 }
 \value{
-list with locations of head, arms and legs plot(0:1, 0:1,
-type = "n") addLegs()
+list with locations of head, arms and legs
 }
 \description{
 add legs
+}
+\examples{
+plot(0:1, 0:1, type = "n")
+    addLegs()
 }
 \author{
 Francis Smart, Mango Solutions
