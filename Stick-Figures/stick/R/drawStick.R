@@ -3,7 +3,7 @@
 #' \tabular{ll}{
 #' Package: \tab stick \cr
 #' Type: \tab Package \cr
-#' Version: \tab 1.0.8 \cr
+#' Version: \tab 1.0.9 \cr
 #' Date: \tab February 2014 \cr
 #' Lazyload: \tab yes \cr
 #' }
@@ -30,7 +30,16 @@ NULL
 #' @param clcol: color of clothes, or NULL to supress clothes (default \code{NULL}) 
 #' @param arms: single character "down", "neutral", "up", "hip", "wave"
 #' @param gender: "male", "female"
-#' @param face: "happy", "sad", "annoyed", "surprised"
+#' @param face: single character "default" ("neutral"), "happy", "sad", "annoyed", "surprised"
+#'     face can also be a numeric matrix with 4 rows and four columns.
+#'     The rows give coordinates of: \enumerate{
+#'     \item left eye x, y, x diameter, y diameter
+#'     \item right eye x, y, x diameter, y diameter
+#'     \item mouth x, y, x diameter, y diameter. 
+#'         If the third value of the fourth column is Inf, x, y, x, y of a straight line.
+#'     \item mouth start and stop positions. If the third value is Inf, plot a line for the mouth (plus one unused values)
+#' }
+#' @param legs: single character "default" or "apart"
 #' @param hat: single logical plot hat or automatic if NA (default NA)
 #' @return list with locations of head, arms and legs
 #' @import plotrix testthat
@@ -43,18 +52,18 @@ NULL
 #'    plot(c(.25,1.25), c(0,3), type = "n", xaxt = 'n', yaxt = 'n', ann = FALSE)
 #'
 #'    drawStick(0, 0, arms = "hip")
-#'    drawStick(.5,0, gender = "female", arms = "up")
+#'    drawStick(0.5, 0, gender = "female", arms = "up")
 #'
-#'    drawStick(0,1, arms = "neutral", lwd = 2, linecol = gray(.5),
+#'    drawStick(0, 1, arms = "neutral", lwd = 2, linecol = gray(.5),
 #'             clcol = "red", face = "sad")
 #'
-#'    drawStick(.5,1, gender = "female", arms = "down", clcol = "purple",
+#'    drawStick(0.5, 1, gender = "female", arms = "down", clcol = "purple",
 #'             lwd = 2, linecol = gray(.5), face = "sad",hat = TRUE)
 #'
-#'    drawStick(0,2, arms = "wave", linecol = gray(.7),
+#'    drawStick(0, 2, arms = "wave", linecol = gray(.7),
 #'             clcol = "blue", face = "surprised",hat = FALSE)
 #'
-#'    drawStick(.5,2, gender = "female", arms = "hip", clcol = "light blue",
+#'    drawStick(0.5, 2, gender = "female", arms = "hip", clcol = "light blue",
 #'             linecol = gray(.7),face = "annoyed")
 #'
 #'    # Solitary annoyed figure
@@ -64,7 +73,7 @@ NULL
 
 drawStick <- function(x = 0, y = 0, scale = 1, gender = c("male", "female"), 
     lwd = 3, linecol = 1, hatcol = 2, shcol = NULL, clcol = NULL, 
-    arms = "default", face = "default", hat = "default", shirt = FALSE, 
+    arms = "default", face = "default", legs = "default", hat = "default", shirt = FALSE, 
     ...) {
     
     gender <- gender[1]
