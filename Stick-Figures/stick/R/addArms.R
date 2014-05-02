@@ -66,7 +66,7 @@ addArms <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, arms = "default",
     
     ends[ssign == -1] <- ends[ssign == -1] * -1
     
-    if (!is.null(shcol)) {
+    if (!is.null(shcol) && !is.na(shcol)) {
         
         shirt <- matrix(c(torso[1], torso[1] - 7 * w / 5, torso[1] - 6 * w / 5, arms[1, ccol - 1] - ends[1], arms[1, ccol - 1] + ends[1] * ifelse(ssign[1] == 0, -1, 1), torso[3] - w, 
                     rev(c(torso[1], torso[1] + 7 * w / 5, torso[1] + 6 * w / 5, arms[1, ccol + 1] + ends[2], arms[1, ccol + 1] - ends[2] * ifelse(ssign[2] == 0, -1, 1), torso[3] + w)),

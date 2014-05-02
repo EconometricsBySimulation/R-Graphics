@@ -1,5 +1,6 @@
+#' add legs
+#' 
 #' @title add legs
-#' @param scale: size of figure
 #' @param x: left bottom alignment of figure
 #' @param y: left bottom alignment of figure
 #' @param xs: x scale (default 1/100)
@@ -11,16 +12,17 @@
 #' @param clcol: color of clothes, or NULL to supress clothes (default \code{NULL}) 
 #' @param tail: x-y coordiates of leg join with torso (default \code{c(50, 35)})
 #' @param w: width parameter (default 5)
+#' @return matrix of legs coordinates
 #' @export
-#' @author Francis Smart, Mango Solutions
-#' @return list with locations of head, arms and legs
 #' @examples
 #'     plot(0:1, 0:1, type = "n")
 #'     addLegs()
 
 addLegs <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, legs = "default", gender = c("male", "female"), 
     lwd = 1, linecol = 1, clcol = NULL, tail = c(50, 35), w = 5) {
-
+    
+    gender <- gender[1]
+    
     if (all(is.na(legs))) { legs <- "default" }
     
     if (is.character(legs) && length(legs) == 1) {
@@ -38,13 +40,36 @@ addLegs <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, legs = "default", 
     
     lines(x + legs[1, ] * xs, y + legs[2, ] * ys, lwd = lwd, col = linecol)
     
+    ccol <- ceiling(ncol(legs) / 2)
+    
     # Draw dress
-    if (!is.null(clcol) && gender != "male") {
+    if (!is.null(clcol) && !is.na(clcol)) {
         
-        # Draw dress
-        polygon(c(x + xs * 50, x + xs * 35, x + xs * 65),
-            c(y + ys * 40, y + ys * 17, y + ys * 17),
-            col = clcol, border = linecol, lwd = lwd)
+        if (gender != "male") {
+            
+            dress <- matrix(c(legs[1, ccol - 1] - w / 2, legs[1, ccol], legs[1, ccol + 1] + w / 2, 
+                        
+                              legs[2, ccol - 1] + w * 3 / 2, tail[2] + w, legs[2, ccol + 1] + w * 3 / 2), 
+                nrow = 2, byrow = TRUE)
+            
+            # Draw dress
+            polygon(x = x + xs * dress[1, ], y = y + ys * dress[2, ],
+                col = clcol, border = linecol, lwd = lwd)
+                
+        } else {
+            
+            trousers <- matrix(c(legs[1, ccol], legs[1, ccol - 1] + w / 2, legs[1, ccol - 1] - w / 2, legs[1, ccol] - w,  
+                        rev(c(legs[1, ccol], legs[1, ccol + 1] - w / 2, legs[1, ccol + 1] + w / 2, legs[1, ccol] + w)),
+                        
+                              legs[2, ccol] - w * 3 / 2, legs[2, ccol - 1], legs[2, ccol - 1], legs[2, ccol], 
+                        rev(c(legs[2, ccol] - w * 3 / 2, legs[2, ccol - 1], legs[2, ccol - 1], legs[2, ccol]))), 
+                nrow = 2, byrow = TRUE)
+            
+            # Draw Trousers
+            polygon(x = x + xs * trousers[1, ], y = y + ys * trousers[2, ],
+                    col = clcol, border = linecol, lwd = lwd)
+            
+        }
     }
     
     return(invisible(legs))

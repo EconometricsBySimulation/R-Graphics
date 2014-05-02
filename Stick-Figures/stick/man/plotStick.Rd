@@ -3,7 +3,7 @@
 \title{Plot Stick Men and Women at coordiates}
 \usage{
 plotStick(x, y, xlim, ylim, xlab = "x", ylab = "y", lwd = 1,
-  linecol = 1, hatcol = NULL, shcol = NULL, clcol = NULL,
+  linecol = 1, hatcol = NULL, shcol = NULL, clcol = NULL, col = NULL,
   gender = c("male", "female"), arms = "default", face = "default",
   legs = "default", hat = "default", tower = 10, ...)
 }
@@ -34,6 +34,10 @@ plotStick(x, y, xlim, ylim, xlab = "x", ylab = "y", lwd = 1,
   \item{clcol}{color of clothes, or NULL to supress clothes
   (default \code{NULL})}
 
+  \item{col}{matrix of colors for fill, overriding shcol,
+  clcol and hatcol with up to three columns (default
+  \code{NULL})}
+
   \item{arms}{character vector "down", "neutral", "up",
   "hip", "wave"}
 
@@ -48,6 +52,9 @@ plotStick(x, y, xlim, ylim, xlab = "x", ylab = "y", lwd = 1,
 
   \item{hat}{single logical plot hat or automatic if NA
   (default NA)}
+
+  \item{tower}{single numeric approximate number of stick
+  people that could be stacked in the plotting area}
 }
 \description{
 A Stick Man or Woman plot.
@@ -59,6 +66,8 @@ plotStick(x = 1:10, y = c(1:5, 5:1))
     plotStick(x = 1:10, y = sin(1:10), hatcol = 2, shcol = rainbow(10),
         clcol = 1:10, gender = c("male", "female"),
         arms = c("down", "neutral", "up", "hip", "wave"))
+    plotStick(x = 1:10, y = cos(1:10),
+        hat = c("none", "shapka", "beanie", "fedora"), col = rainbow(30), cex = 2)
 }
 \author{
 Francis Smart, Mango Solutions

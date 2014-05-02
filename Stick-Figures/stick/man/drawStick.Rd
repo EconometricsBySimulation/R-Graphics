@@ -2,17 +2,19 @@
 \alias{drawStick}
 \title{Stick Man/Woman}
 \usage{
-drawStick(x = 0, y = 0, xscale = 1, yscale = xscale,
-  gender = c("male", "female"), lwd = 3, linecol = 1, hatcol = 2,
-  shcol = NULL, clcol = NULL, arms = "default", face = "default",
-  legs = "default", hat = "default", ...)
+drawStick(x = 0, y = 0, xscale = 1, yscale = 1, gender = c("male",
+  "female"), lwd = 3, linecol = 1, hatcol = 2, shcol = NULL,
+  clcol = NULL, arms = "default", face = "default", legs = "default",
+  hat = "default", ...)
 }
 \arguments{
-  \item{scale}{size of figure}
-
   \item{x}{left bottom alignment of figure}
 
   \item{y}{left bottom alignment of figure}
+
+  \item{xscale}{size of figure}
+
+  \item{yscale}{size of figure}
 
   \item{lwd}{line weight}
 
@@ -45,21 +47,14 @@ drawStick(x = 0, y = 0, xscale = 1, yscale = xscale,
 
   \item{legs}{single character "default" or "apart"}
 
-  \item{hat}{single logical plot hat or automatic if NA
-  (default NA)}
+  \item{hat:}{single logical plot hat or character "none",
+  "shapka", "beanie" or "default" (default "none")}
 }
 \value{
 list with locations of head, arms and legs
 }
 \description{
 Create a Stick Man or Woman.
-}
-\details{
-See
-\url{http://www.econometricsbysimulation.com/2014/01/stick-figure-function-r.html}
-for more information. Use \code{test_dir(path =
-file.path(system.file(package = "stick"), "tests"))} (from
-\code{testthat}) to run tests.
 }
 \examples{
 # Solitary annoyed figure

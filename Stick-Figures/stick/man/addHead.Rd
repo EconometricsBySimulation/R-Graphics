@@ -27,7 +27,7 @@ addHead(x = 0, y = 0, xs = 1/100, ys = 1/100, face = "default",
   one unused values) }}
 
   \item{hat:}{single logical plot hat or single character
-  "none" or "default" (default "none")}
+  "none", "shapka", "beanie" or "fedora" (default "none")}
 
   \item{lwd:}{line weight}
 

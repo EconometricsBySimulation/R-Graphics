@@ -7,8 +7,6 @@ addLegs(x = 0, y = 0, xs = 1/100, ys = 1/100, legs = "default",
   tail = c(50, 35), w = 5)
 }
 \arguments{
-  \item{scale:}{size of figure}
-
   \item{x:}{left bottom alignment of figure}
 
   \item{y:}{left bottom alignment of figure}
@@ -34,7 +32,7 @@ addLegs(x = 0, y = 0, xs = 1/100, ys = 1/100, legs = "default",
   \item{w:}{width parameter (default 5)}
 }
 \value{
-list with locations of head, arms and legs
+matrix of legs coordinates
 }
 \description{
 add legs
@@ -42,8 +40,5 @@ add legs
 \examples{
 plot(0:1, 0:1, type = "n")
     addLegs()
-}
-\author{
-Francis Smart, Mango Solutions
 }
 

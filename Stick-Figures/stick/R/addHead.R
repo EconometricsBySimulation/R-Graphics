@@ -15,7 +15,7 @@
 #'     \item mouth start and stop positions. If the third value is Inf, plot a line for the mouth (plus one unused values)
 #' }
 #' @param hat: single logical plot hat 
-#'     or single character "none" or "default" (default "none")
+#'     or single character "none", "shapka", "beanie" or "fedora" (default "none")
 #' @param lwd: line weight
 #' @param linecol: color of lines - any color
 #' @param hatcol: color of hat - any color, or NULL to supress hat (default 2)
@@ -87,15 +87,35 @@ addHead <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, face = "default", 
     }
     # Draw hat
     
-    if (!is.null(hatcol)) {
+    if (!is.null(hatcol) && !is.na(hatcol)) {
         
         if (hat != "none") {
             
-            hat <- matrix(c(-14, -14, -9, -8, 
+            hat <- switch(hat, 
+                "shapka" = {
+                    matrix(c(-9, -8, -6, -8, -6, 
+                            rev(c(9, 8, 6, 8, 6)),
+                                
+                                7, 15, 16, 8, 17,
+                            rev(c(7, 15, 16, 8, 17))), nrow = 2, byrow = TRUE)
+                },
+                "beanie" = {
+                    
+                    bbx <- c(1, 3, 5, 7, 8, 9, 8, 6, 4, 2, 
+                                0, 3, 5, 7, 6, 5, 4, 2, 0)
+                    bby <- c(6, 5.5, 5, 4.5, 4, 3, 5, 6, 7, 7.5, 
+                                8, 7.5, 7, 6.5, 8, 10, 11, 12, 13)
+                    
+                    matrix(c(-bbx, rev(bbx),
+                                
+                            bby, rev(bby)), nrow = 2, byrow = TRUE)
+                },
+                matrix(c(-14, -14, -9, -8, 
                         rev(c(14, 14, 9, 8)),
                             
                             8, 10, 10, 16,
                         rev(c(8, 10, 10, 16))), nrow = 2, byrow = TRUE)
+            )
             
             polygon(
                 x + (hat[1, ] + head[1]) * xs,
