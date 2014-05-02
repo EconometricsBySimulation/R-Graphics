@@ -202,8 +202,8 @@ plotStick <- function(x, y, xlim, ylim, xlab = "x", ylab = "y",
         
         if (!is(col, "matrix")) {
             
-            col <- matrix(rep(c(col), each = lngtx * 3)[seq.int(1, lngtx * 3)], 
-                nrow = lngtx, ncol = 3, byrow = TRUE)
+            col <- matrix(rep(c(col), times = lngtx * 3)[seq.int(1, lngtx * 3)], 
+                nrow = lngtx, ncol = 3, byrow = FALSE)
         }
         
         clothes <- col 
