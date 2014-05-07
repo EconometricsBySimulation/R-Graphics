@@ -27,7 +27,8 @@ addHead(x = 0, y = 0, xs = 1/100, ys = 1/100, face = "default",
   one unused values) }}
 
   \item{hat:}{single logical plot hat or single character
-  "none", "shapka", "beanie" or "fedora" (default "none")}
+  "none", "shapka", "beanie", "bill" or "fedora" (default
+  "none")}
 
   \item{lwd:}{line weight}
 
@@ -47,10 +48,10 @@ add a head
 }
 \examples{
 plot(0:1, 0:1, type = "n")
-       addHead(hat = "default")
-       addHead(y = -0.5, face = matrix(c(46, 77, 2.5, 2,
-                       54, 77, 2.5, 2,
-                       50, 70, 6, 2,
-                       -160, -20, 0, 0), nrow = 4, ncol = 4, byrow = TRUE))
+   addHead(hat = "default")
+   addHead(y = -0.5, face = matrix(c(46, 77, 2.5, 2,
+                   54, 77, 2.5, 2,
+                   50, 70, 6, 2,
+                   -160, -20, 0, 0), nrow = 4, ncol = 4, byrow = TRUE))
 }
 
