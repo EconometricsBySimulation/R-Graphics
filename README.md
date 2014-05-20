@@ -28,7 +28,7 @@ set.seed(68331)
 plotStick(x = runif(100), y = runif(100))
 ```
 
-![random uniform placement of stickmen](https://github.com/EconometricsBySimulation/R-Graphics/blob/master/plotStick_runif100.png "plotStick(x = runif(100), y = runif(100))")
+![random uniform placement of stickmen](https://raw.githubusercontent.com/EconometricsBySimulation/R-Graphics/master/plotStick_runif100.png "plotStick(x = runif(100), y = runif(100))")
 
 ```R
 plotStick(x = 1:10, y = cos(1:10),
@@ -36,7 +36,7 @@ plotStick(x = 1:10, y = cos(1:10),
     col = rainbow(10), cex = 2)
 ```
 
-![cos placement of stickmen in hats](https://github.com/EconometricsBySimulation/R-Graphics/blob/master/plotStick_cos_1_10.png "plotStick(x = 1:10, y = cos(1:10),
+![cos placement of stickmen in hats](https://raw.githubusercontent.com/EconometricsBySimulation/R-Graphics/master/plotStick_cos_1_10.png "plotStick(x = 1:10, y = cos(1:10),
     hat = c('none', 'shapka', 'beanie', 'fedora'), 
     col = rainbow(10), cex = 2)")
 
