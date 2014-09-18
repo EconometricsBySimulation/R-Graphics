@@ -6,16 +6,16 @@ An [R package](http://www.r-project.org/) to create stickmen and stick women on 
 how to use this code
 --------
 
-To install this package you will need:
-* R
-* Rtools
+Installation from github requires the devtools package to be installed.
 
-Note that you must manually update your environmental variable PATH to include these utilities.
+```R
+# install devtools for devtools::install_github
+install.packages("devtools")
+require(devtools)
+# install stick package
+install_github("EconometricsBySimulation/R-Graphics/Stick-Figures/stick")
+```
 
-This package includes comments in **roxygen2** format. 
-From R (and when located one level above folder saturate) run the command 
-`roxygenise("stick")` to build the help files. 
-To build the package on Windows use the command `R CMD INSTALL --build stick` from the command window.
 This package also includes tests in **testthat** format. From R run the call `test_package("stick")`.
 
 what is this code for?
@@ -24,6 +24,7 @@ what is this code for?
 This R package contains functions for adding stickpeople to a plot.
 
 ```R
+require(stick)
 set.seed(68331)
 plotStick(x = runif(100), y = runif(100))
 ```
