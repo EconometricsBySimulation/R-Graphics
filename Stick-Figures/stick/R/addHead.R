@@ -1,11 +1,14 @@
-#' add a head
+#' @title Add Head
+#' 
+#' @description Add a head to a plotting area.
+#' A hat will be added if hat and hatcol is specified.
+#' Argument head is a length 4 numeric vector passed to \code{draw.ellipse}.
 #'
-#' @title add head
-#' @param x: left bottom alignment of figure
-#' @param y: left bottom alignment of figure
-#' @param xs: x scale (default 1/100)
-#' @param ys: y scale (default 1/100)
-#' @param face: "default" ("neutral"), "happy", "sad", "annoyed", "surprised"
+#' @param x left bottom alignment of figure
+#' @param y left bottom alignment of figure
+#' @param xs x scale (default 1/100)
+#' @param ys y scale (default 1/100)
+#' @param face "default" ("neutral"), "happy", "sad", "annoyed", "surprised"
 #'     face can also be a numeric matrix with 4 rows and four columns.
 #'     The rows give coordinates of: \enumerate{
 #'     \item left eye x, y, x diameter, y diameter
@@ -14,26 +17,30 @@
 #'         If the third value of the fourth column is Inf, x, y, x, y of a straight line.
 #'     \item mouth start and stop positions. If the third value is Inf, plot a line for the mouth (plus one unused values)
 #' }
-#' @param hat: single logical plot hat 
+#' @param hat single logical plot hat 
 #'     or single character "none", "shapka", "beanie", "bill" or "fedora" (default "none")
-#' @param lwd: line weight
-#' @param linecol: color of lines - any color
-#' @param hatcol: color of hat - any color, or NULL to supress hat (default 2)
-#' @param head: length 4 specifying head x-y location and x-y diameters
+#' @param lwd line weight
+#' @param linecol color of lines - any color
+#' @param hatcol color of hat - any color, or NULL to supress hat (default 2)
+#' @param head length 4 specifying head x-y location and x-y diameters
 #' @return matrix of head coordinates
 #' @export
 #' @examples
-#'    plot(0:1, 0:1, type = "n")
-#'    addHead(hat = "default")
-#'    addHead(y = -0.5, face = matrix(c(46, 77, 2.5, 2,
-#'                    54, 77, 2.5, 2, 
-#'                    50, 70, 6, 2, 
-#'                    -160, -20, 0, 0), nrow = 4, ncol = 4, byrow = TRUE))
+#' plot(0:1, 0:1, type = "n")
+#' addHead(hat = "default")
+#' addHead(y = -0.5, face = matrix(c(46, 77, 2.5, 2,
+#'         54, 77, 2.5, 2, 
+#'         50, 70, 6, 2, 
+#'         -160, -20, 0, 0), nrow = 4, ncol = 4, byrow = TRUE))
 
 addHead <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, face = "default", hat = "none",
     lwd = 1, linecol = 1, hatcol = 2, head = c(50, 75, 10, 15)) {
     
-    draw.ellipse(x + head[1] * xs, y + head[2] * ys, head[3] * xs, head[4] * ys, lwd = lwd, border = linecol)
+    draw.ellipse(x = x + head[1] * xs, 
+        y = y + head[2] * ys, 
+        a = head[3] * xs, 
+        b = head[4] * ys, 
+        border = linecol, lwd = lwd)
     
     if (all(is.na(face))) { face <- "default" }
     

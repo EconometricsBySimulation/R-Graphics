@@ -1,27 +1,32 @@
-#' add arms
+
+#' @title Add Arms
+#' 
+#' @description Add arms and torso to a plotting area.
+#' A shirt will be added if shcol is specified.
+#' Argument arms can be a character string, or a matrix specifying the 
+#' coordinates of the arms.
 #'
-#' @title add arms
-#' @param x: left bottom alignment of figure
-#' @param y: left bottom alignment of figure
-#' @param xs: x scale (default 1/100)
-#' @param ys: y scale (default 1/100)
-#' @param arms: single character "default" ("down"), "neutral", "up", "hip", "wave", 
+#' @param x left bottom alignment of figure
+#' @param y left bottom alignment of figure
+#' @param xs x scale (default 1/100)
+#' @param ys y scale (default 1/100)
+#' @param arms single character "default" ("down"), "neutral", "up", "hip", "wave", 
 #'     or numeric matrix with two rows for left and right coordinates
-#' @param lwd: line weight
-#' @param linecol: color of lines
-#' @param shcol: color of shirt, or NULL to supress shirt (default \code{NULL})
-#' @param torso: length 4 vector of x-y coordinates of top and bottom of torso
-#' @param w: width parameter (default 5)
+#' @param lwd line weight
+#' @param linecol color of lines
+#' @param shcol color of shirt, or NULL to supress shirt (default \code{NULL})
+#' @param torso length 4 vector of x-y coordinates of top and bottom of torso
+#' @param w width parameter (default 5)
 #' @return matrix of arms coordinates
 #' @export
 #' @examples
-#'    plot(0:1, 0:1, type = "n")
-#'    addArms(arms = "neutral", linecol = 2)
-#'    addArms(arms = "hip", linecol = 4)
-#'    addArms(arms = "wave", linecol = 5)
-#'    addArms(shcol = 2)
-#'    addArms(arms = "up", linecol = 3, shcol = 3)
-#'    addArms(arms = "neutral", shcol = 4)
+#' plot(0:1, 0:1, type = "n")
+#' addArms(arms = "neutral", linecol = 2)
+#' addArms(arms = "hip", linecol = 4)
+#' addArms(arms = "wave", linecol = 5)
+#' addArms(shcol = 2)
+#' addArms(arms = "up", linecol = 3, shcol = 3)
+#' addArms(arms = "neutral", shcol = 4)
 
 addArms <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, arms = "default", 
     lwd = 1, linecol = 1, shcol = NULL, torso = c(50, 60, 50, 35), w = 5) {

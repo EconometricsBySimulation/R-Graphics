@@ -1,22 +1,27 @@
-#' add legs
+
+#' @title Add Legs
 #' 
-#' @title add legs
-#' @param x: left bottom alignment of figure
-#' @param y: left bottom alignment of figure
-#' @param xs: x scale (default 1/100)
-#' @param ys: y scale (default 1/100)
-#' @param legs: single character (default \code{'default'})
-#' @param gender: "male", "female"
-#' @param lwd: line weight
-#' @param linecol: color of lines
-#' @param clcol: color of clothes, or NULL to supress clothes (default \code{NULL}) 
-#' @param tail: x-y coordiates of leg join with torso (default \code{c(50, 35)})
-#' @param w: width parameter (default 5)
+#' @description Add legs to a plotting area.
+#' Trousers or a skirt/kilt will be added on top of the legs if clcol is specified.
+#' Argument legs can be a character string, or a matrix specifying the 
+#' coordinates of the legs.
+#' 
+#' @param x left bottom alignment of figure
+#' @param y left bottom alignment of figure
+#' @param xs x scale (default 1/100)
+#' @param ys y scale (default 1/100)
+#' @param legs single character (default \code{'default'})
+#' @param gender "male", "female"
+#' @param lwd line weight
+#' @param linecol color of lines
+#' @param clcol color of clothes, or NULL to supress clothes (default \code{NULL}) 
+#' @param tail x-y coordiates of leg join with torso (default \code{c(50, 35)})
+#' @param w width parameter (default 5)
 #' @return matrix of legs coordinates
 #' @export
 #' @examples
-#'     plot(0:1, 0:1, type = "n")
-#'     addLegs()
+#' plot(0:1, 0:1, type = "n")
+#' addLegs()
 
 addLegs <- function(x = 0, y = 0, xs = 1 / 100, ys = 1 / 100, legs = "default", gender = c("male", "female"), 
     lwd = 1, linecol = 1, clcol = NULL, tail = c(50, 35), w = 5) {
